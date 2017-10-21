@@ -73,12 +73,26 @@ architecture overall of PND_top is
 
 	-- COMPONENT DECLARATION
 	
+	component PND_TrialDivision is port (
+		
+		input		: in std_logic_vector(9 downto 0);
+		isPrime	: out std_logic
+		
+	);
+	end component;
+	
+	
 	-- INTERNAL SIGNALS 
+	
+	signal inputNumber	: std_logic_vector(9 downto 0);
+	signal isPrime			: std_logic;
 
 begin
 
-	-- YOUR CODE HERE 
+	inputNumber <= SW;
+	LEDR(0) <= isPrime;
 	
+	primeTester1 : PND_TrialDivision port map (inputNumber, isPrime);
 	
 
 end overall;

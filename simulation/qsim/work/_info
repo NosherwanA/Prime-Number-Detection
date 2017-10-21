@@ -1,0 +1,98 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Quartus Projects/Prime_Number_Detection/simulation/qsim
+Epnd_top
+Z1 w1508621010
+Z2 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z3 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 cD3@N^MdoDolN5@R6?T[V1
+Z4 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z5 DPx8 cyclonev 19 cyclonev_components 0 22 3BCIeZzdIHLCX<;R;K38G3
+Z6 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z7 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z8 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 PQDYM9fR]Wek<A7X8bA8S1
+R0
+Z9 8PND_top.vho
+Z10 FPND_top.vho
+l0
+L37
+V^077NMnj0Fg[k<?K164fJ0
+!s100 CmhB21ZB^iebh]Xk3YA4E3
+Z11 OV;C;10.5b;63
+32
+!s110 1508621015
+!i10b 1
+Z12 !s108 1508621015.000000
+Z13 !s90 -work|work|PND_top.vho|
+Z14 !s107 PND_top.vho|
+!i113 1
+Z15 o-work work
+Z16 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+DEx4 work 7 pnd_top 0 22 ^077NMnj0Fg[k<?K164fJ0
+l15080
+L81
+VBhTOAHc:4n30A]@U4C07S2
+!s100 7E9ec[R2aIF2I]21]Y4ci3
+R11
+32
+!s110 1508621016
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
+Epnd_top_vhd_vec_tst
+Z17 w1508621001
+R6
+R7
+R0
+Z18 8Waveform.vwf.vht
+Z19 FWaveform.vwf.vht
+l0
+L32
+VgO[UGe0gIF_zD2amB<k2W1
+!s100 HcPmF18HR<U2I:V]Bo[622
+R11
+32
+Z20 !s110 1508621018
+!i10b 1
+Z21 !s108 1508621018.000000
+Z22 !s90 -work|work|Waveform.vwf.vht|
+Z23 !s107 Waveform.vwf.vht|
+!i113 1
+R15
+R16
+Apnd_top_arch
+R6
+R7
+DEx4 work 19 pnd_top_vhd_vec_tst 0 22 gO[UGe0gIF_zD2amB<k2W1
+l119
+L34
+VkF_V6M8mlj5B=o2ERO>If3
+!s100 miNHYS9PzUW5QRLc5LJoE0
+R11
+32
+R20
+!i10b 1
+R21
+R22
+R23
+!i113 1
+R15
+R16
