@@ -1,0 +1,84 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity PND_top is port (
+	
+	--Clocks
+	CLOCK_50			: in std_logic;
+	CLOCK2_50			: in std_logic;
+	CLOCK3_50			: in std_logic;
+	CLOCK4_50			: in std_logic;
+	
+	--Reset Button
+	RESET_N				: in std_logic;
+	
+	--Keys (Push Buttons) ACTIVE LOW
+	KEY					: in std_logic_vector(3 downto 0);
+		
+	--Switches
+	SW					: in std_logic_vector(9 downto 0);
+	
+	--LEDR (Red LEDs)
+	LEDR				: out std_logic_vector(9 downto 0);
+	
+	--Seven Segment Displays
+	HEX0				: out std_logic_vector(6 downto 0);
+	HEX1				: out std_logic_vector(6 downto 0);
+	HEX2				: out std_logic_vector(6 downto 0);
+	HEX3				: out std_logic_vector(6 downto 0);
+	HEX4				: out std_logic_vector(6 downto 0);
+	HEX5				: out std_logic_vector(6 downto 0);
+	
+	--DRAM
+	DRAM_ADDR			: out std_logic_vector(12 downto 0);
+	DRAM_BA				: out std_logic_vector(1 downto 0);
+	DRAM_CAS_N			: out std_logic;
+	DRAM_CKE			: out std_logic;
+	DRAM_CLK			: out std_logic;
+	DRAM_CS_N			: out std_logic;
+	DRAM_DQ				: inout std_logic_vector(15 downto 0);
+	DRAM_LDQM			: out std_logic;
+	DRAM_RAS_N			: out std_logic;
+	DRAM_UDQM			: out std_logic;
+	DRAM_WE_N			: out std_logic;
+	
+	--GPIOs
+	GPIO_0				: inout std_logic_vector(35 downto 0);
+	GPIO_1				: inout std_logic_vector(15 downto 0);
+	
+	--PS2
+	PS2_CLK				: inout std_logic;
+	PS2_CLK2			: inout std_logic;
+	PS2_DAT				: inout std_logic;
+	PS2_DAT2			: inout std_logic;
+	
+	--SD
+	SD_CLK				: out std_logic;
+	SD_CMD				: inout std_logic;
+	SD_DATA				: inout std_logic_vector(3 downto 0);
+	
+	
+	--VGA
+	VGA_B				: out std_logic_vector(3 downto 0);
+	VGA_G				: out std_logic_vector(3 downto 0);
+	VGA_HS				: out std_logic;
+	VGA_R				: out std_logic_vector(3 downto 0);
+	VGA_VS				: out std_logic
+	
+);
+end PND_top ;
+
+architecture overall of PND_top is
+
+	-- COMPONENT DECLARATION
+	
+	-- INTERNAL SIGNALS 
+
+begin
+
+	-- YOUR CODE HERE 
+	
+	
+
+end overall;
