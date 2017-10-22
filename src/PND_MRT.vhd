@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.Montgomery_exponentiator_parameters.all;
 
 entity PND_MRT is 
 port(
@@ -29,14 +30,29 @@ architecture internal of PND_MRT is
 	signal Curr_State		: State_Type;
 	signal Next_State		: State_Type;
 	
+	signal Two				: std_logic_vector(7 downto 0):= "00000010";
+	
 	signal N					: std_logic_vector(7 downto 0);
 	signal N_One			: std_logic_vector(7 downto 0);
 	signal One				: std_logic_vector(7 downto 0) := "00000001";
 	
+	signal temp					: std_logic_vector(7 downto 0):= "00000000";
+	signal j					: integer:=0;
+	
 	signal isPrime			: std_logic;
+	signal computation_StateB_Complete	: std_logic:='0';
 	
 	
 	-- COMPONENTS
+	
+	component Montgomery_exponentiator_msb is
+	port (
+	  x, y: in std_logic_vector(K-1 downto 0);
+	  clk, reset, start: in std_logic;
+	  z: out std_logic_vector(K-1 downto 0);
+	  done: out std_logic
+	);
+	end component;
 	
 
 
@@ -70,13 +86,47 @@ Transition_Section: process (Curr_State)
 		
 			When A =>
 			
-				N <= numberToCheck;
-				N_One <= std_logic_vector(unsigned(N) - unsigned(One));
+				if (en = '1') then
+				
+					N <= numberToCheck;
+					N_One <= std_logic_vector(unsigned(N) - unsigned(One));
+					
+					Next_State <= B;
+					
+				else
+					
+					N <= "00000000";
+					N_One <= "00000000";
+					
+					Next_State <= A;
+					
+				end if;
 			
+			When B => -- compute k and m 
+				
+				If (j = 0) then
+					
+					temp <= shift_right(unsigned(N_One),1);
+					j <= (j + 1);
+				
+				else
+					
+					temp <= shift_right(unsigned(temp),1);
+					j <= (j + 1);
 			
-			When B =>
+				end if;
+				
+				if ( (temp(0) AND '1') = '1') then
+					Next_State <= C;
+					computation_StateB_Complete = '1';
+				else
+					Next_State <= B;
+				end if;
 			
 			When C =>
+			
+				ModExp:Montgomery_exponentiator_msb port map(Two,temp,clk,reset,computation_StateB_Complete,): 
+			
 			
 			When D =>
 			
