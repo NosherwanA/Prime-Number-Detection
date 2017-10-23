@@ -152,13 +152,17 @@ Decoder_Section : process(curr_State)
 		case Curr_State is 
 		
 			when A =>
-			
+				busy <= '0';
+				output <= '0';
 			when B =>
-			
+				busy <= '1';
+				output <= '0';
 			when C =>
-			
+				busy <= '1';
+				output <= '0';
 			When D =>
-			
+				busy <= '0';
+				output <= isPrime;
 			When others =>
 			
 		end case;
