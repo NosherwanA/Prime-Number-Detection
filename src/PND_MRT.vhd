@@ -64,7 +64,7 @@ Register_Section: process (clk,reset)
 		
 		IF (reset = '0') THEN
 		
-			Curr_State <= A;
+			Curr_State <= D;
 			
 		ELSIF(rising_edge(clk)) THEN
 		
@@ -138,7 +138,7 @@ Transition_Section: process (Curr_State)
 			
 			When others =>
 			
-				Curr_State <= A;
+				Curr_State <= D;
 				
 		end case;
 	
