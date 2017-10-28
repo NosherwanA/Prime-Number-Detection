@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.Montgomery_exponentiator_parameters.all;
 
 entity PND_top is port (
 	
@@ -34,8 +35,8 @@ entity PND_top is port (
 	DRAM_ADDR			: out std_logic_vector(12 downto 0);
 	DRAM_BA				: out std_logic_vector(1 downto 0);
 	DRAM_CAS_N			: out std_logic;
-	DRAM_CKE			: out std_logic;
-	DRAM_CLK			: out std_logic;
+	DRAM_CKE				: out std_logic;
+	DRAM_CLK				: out std_logic;
 	DRAM_CS_N			: out std_logic;
 	DRAM_DQ				: inout std_logic_vector(15 downto 0);
 	DRAM_LDQM			: out std_logic;
@@ -49,9 +50,9 @@ entity PND_top is port (
 	
 	--PS2
 	PS2_CLK				: inout std_logic;
-	PS2_CLK2			: inout std_logic;
+	PS2_CLK2				: inout std_logic;
 	PS2_DAT				: inout std_logic;
-	PS2_DAT2			: inout std_logic;
+	PS2_DAT2				: inout std_logic;
 	
 	--SD
 	SD_CLK				: out std_logic;
@@ -60,10 +61,10 @@ entity PND_top is port (
 	
 	
 	--VGA
-	VGA_B				: out std_logic_vector(3 downto 0);
-	VGA_G				: out std_logic_vector(3 downto 0);
+	VGA_B					: out std_logic_vector(3 downto 0);
+	VGA_G					: out std_logic_vector(3 downto 0);
 	VGA_HS				: out std_logic;
-	VGA_R				: out std_logic_vector(3 downto 0);
+	VGA_R					: out std_logic_vector(3 downto 0);
 	VGA_VS				: out std_logic
 	
 );

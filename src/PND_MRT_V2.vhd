@@ -1,9 +1,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.Montgomery_exponentiator_parameters.all;
 
-entity PND_MRT is 
+--Second Approach using divider mega function
+
+entity PND_MRT_V2 is 
 port(
 	
 	numberToCheck		: in std_logic_vector(7 downto 0);
@@ -14,9 +15,9 @@ port(
 	busy					: out std_logic
 
 );
-end PND_MRT;
+end PND_MRT_V2;
 
-architecture internal of PND_MRT is 
+architecture internal of PND_MRT_V2 is 
 	
 	type State_Type is (A,B,C,D);
 		
@@ -36,9 +37,11 @@ architecture internal of PND_MRT is
 	signal N_One			: std_logic_vector(7 downto 0);
 	signal One				: std_logic_vector(7 downto 0) := "00000001";
 	
-	signal temp				: std_logic_vector(7 downto 0):= "00000000";
-	signal j					: integer:=0;
+	signal k					: integer:= 0;
+	signal m					: std_logic_vector(7 downto 0);
+	signal temp				: std_logic_vector(7 downto 0);
 	
+	signal dividerBusy	: std_logic:= '0';
 	signal isPrime			: std_logic;
 	signal computation_StateB_Complete	: std_logic:='0';
 	
@@ -52,17 +55,16 @@ architecture internal of PND_MRT is
 	signal out_product	: std_logic_vector( 7 downto 0 ):= "00000000";
 	signal out_ready		: std_logic;
 	
-	---------------
-	
-	signal t					: std_logic_vector (7 downto 0);
-	signal p					: std_logic_vector (7 downto 0);
-	
-	signal second_while_complete	: std_logic;
-	
-	
-	
+	--Signals for eight bit divider
+	signal in_aclr			: std_logic:= '1';
+	signal in_clken		: std_logic;
+	signal in_denom		: std_logic_vector (7 downto 0);
+	signal in_numer		: std_logic_vector (7 downto 0);
+	signal out_quotient	: std_logic_vector (7 downto 0);
+	signal out_remain		: std_logic_vector (7 downto 0);
 	
 	
+
 	-- COMPONENTS
 	
 	component modmult is
@@ -78,12 +80,26 @@ architecture internal of PND_MRT is
 		ready : out std_logic
 	);
 	end component;
+	
+	ENTITY Eight_Bit_Divider IS
+	PORT
+	(
+		aclr		: IN STD_LOGIC ;
+		clken		: IN STD_LOGIC ;
+		clock		: IN STD_LOGIC ;
+		denom		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+		numer		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+		quotient		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		remain		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+	);
+	END Eight_Bit_Divider;
 
 
 
 begin
 
 my_mult: modmult port map(in_mpand, in_mplier, in_modulus, out_product, clk, in_ds, in_reset, out_ready);
+my_div:	Eight_Bit_Divider port map(in_aclr, in_clken, clk, in_denom, in_numer, out_quotient, out_remain);
 
 
 Register_Section: process (clk,reset)
@@ -92,7 +108,9 @@ Register_Section: process (clk,reset)
 		IF (reset = '0') THEN
 		
 			Curr_State <= D;
-			in_reset <= '1';
+			in_reset <= '1'; -- keeping the multiplier in reset state
+			computation_StateB_Complete <= '0';
+			second_while_complete <= '0';
 			
 		ELSIF(rising_edge(clk)) THEN
 		
@@ -119,6 +137,8 @@ Transition_Section: process (Curr_State)
 					N <= numberToCheck;
 					N_One <= std_logic_vector(unsigned(N) - unsigned(One));
 					
+					temp <= N_One; -- for the divider
+					
 					Next_State <= B;
 					
 				else
@@ -132,24 +152,41 @@ Transition_Section: process (Curr_State)
 			
 			When B => -- compute k and m 
 				
-				If (j = 0) then
+				if (dividerBusy = '0') then
 					
-					temp <= shift_right(unsigned(N_One),1);
-					j <= (j + 1);
-				
+					in_aclr = '0';
+					in_clken = '1';
+					
+					in_numer <= temp;
+					in_denom <= Two;
+					
+					dividerBusy <= '1';
+					
 				else
+				
+					temp <= out_quotient;
+					k <= (k+1);
 					
-					temp <= shift_right(unsigned(temp),1);
-					j <= (j + 1);
-			
+					if ( (temp(0) & '1') = '1') then 
+						
+						m <= temp;
+						in_aclr = '1';
+						dividerBusy <= '0';
+						computation_StateB_Complete <= '1';
+						Next_State <= C;
+						
+					else
+						
+						in_aclr = '1';
+						dividerBusy <= '0';
+						Next_State <= B;
+					
+					end if;
+					
+				
 				end if;
 				
-				if ( (temp(0) AND '1') = '1') then
-					Next_State <= C;
-					computation_StateB_Complete <= '1';
-				else
-					Next_State <= B;
-				end if;
+				
 			
 			When C =>
 				
@@ -170,8 +207,12 @@ Transition_Section: process (Curr_State)
 				-- SImilar to the while loop number 2
 				if ( temp /= "00000000" ) then 
 				
+					
+				
 				else
-					-- break out 
+					-- break out
+					second_while_complete <= '1';
+				
 				end if;
 				
 			
