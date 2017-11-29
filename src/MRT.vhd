@@ -36,6 +36,9 @@ architecture internal of MRT is
     signal counter_j            : integer;
     signal counter_j_flag       : std_logic;
 
+    signal int_t                : integer;
+    signal int_p                : integer;
+
         
 
 
@@ -81,11 +84,15 @@ architecture internal of MRT is
                     if (check = '0') then
                         next_case <= BITSHIFT_D ;
                     else
-                        next_case <= COMPUTE_T_P; --state to be defined
+                        next_case <= COMPUTE_T_P;
                     end if;
                     counter_j_flag <= '0';
 
                 when COMPUTE_T_P =>
+                    int_t <= 2;
+                    int_p <= 2;
+                    
+                    next_state <= ; --state to be determined
 
                 when DONE =>
                 
@@ -100,7 +107,7 @@ architecture internal of MRT is
                 when INITIAL_SETUP =>
 
                 when BITSHIFT_D =>
-                
+
                 when CHECK_D_AND_ONE =>
 
                 when COMPUTE_T_P =>
