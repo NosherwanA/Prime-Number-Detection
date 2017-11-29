@@ -20,6 +20,7 @@ architecture internal of MRT is
                         INITIAL_SETUP,
                         CHECK_D_AND_ONE,
                         BITSHIFT_D,
+                        COMPUTE_T_P,
                         DONE);
     
     signal curr_state           : State_Type;
@@ -29,7 +30,9 @@ architecture internal of MRT is
     signal int_N_minus_one      : integer;
     signal N_minus_one          : std_logic_vector (7 downto 0);
 
+    signal d_in                 : std_logic_vector(7 downto 0);
     signal d                    : std_logic_vector(7 downto 0);
+    signal check                : std_logic;
     signal counter_j            : integer;
     signal counter_j_flag       : std_logic;
 
@@ -63,12 +66,26 @@ architecture internal of MRT is
                     int_N <= unsigned(numberToCheck);
                     N_minus_one <= std_logic_vector((unsigned(numberToCheck)) - 1 );
                     int_N_minus_one <= (unsigned(numberToCheck) - 1);
+                    d_in <= N_minus_one;
 
                     next_state <= BITSHIFT_D;
-                    
-                when CHECK_D_AND_ONE =>
 
                 when BITSHIFT_D =>
+                    d <= '0' & d_in(7 downto 1);
+                    counter_j_flag <= '1';
+                    check <= d(0) and '1';
+
+                    next_state <= CHECK_D_AND_ONE;
+
+                when CHECK_D_AND_ONE =>
+                    if (check = '0') then
+                        next_case <= BITSHIFT_D ;
+                    else
+                        next_case <= COMPUTE_T_P; --state to be defined
+                    end if;
+                    counter_j_flag <= '0';
+
+                when COMPUTE_T_P =>
 
                 when DONE =>
                 
@@ -82,9 +99,11 @@ architecture internal of MRT is
 
                 when INITIAL_SETUP =>
 
+                when BITSHIFT_D =>
+                
                 when CHECK_D_AND_ONE =>
 
-                when BITSHIFT_D =>
+                when COMPUTE_T_P =>
 
                 when DONE =>
 
