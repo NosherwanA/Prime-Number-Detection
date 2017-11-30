@@ -21,6 +21,12 @@ architecture internal of MRT is
                         CHECK_D_AND_ONE,
                         BITSHIFT_D,
                         COMPUTE_T_P,
+                        BITSHIFT_D_FWHILE,
+                        CHECK_D_FWHILE,
+                        COMPUTE_P,
+                        STORE_P,
+                        COMPUTE_T,
+                        STORE_T,
                         DONE);
     
     signal curr_state           : State_Type;
@@ -38,6 +44,13 @@ architecture internal of MRT is
 
     signal int_t                : integer;
     signal int_p                : integer;
+
+    signal d_while              : std_logic_vector(7 downto 0);
+    signal check_d              : std_logic;
+
+    signal int_p_temp           : integer;
+    signal int_t_temp           : integer;
+    signal check_d_one          : std_logic;
 
         
 
@@ -83,6 +96,7 @@ architecture internal of MRT is
                 when CHECK_D_AND_ONE =>
                     if (check = '0') then
                         next_case <= BITSHIFT_D ;
+                        d_in <= d;
                     else
                         next_case <= COMPUTE_T_P;
                     end if;
@@ -92,7 +106,45 @@ architecture internal of MRT is
                     int_t <= 2;
                     int_p <= 2;
                     
-                    next_state <= ; --state to be determined
+                    next_state <= BITSHIFT_D_FWHILE; --state to be determined
+
+                when BITSHIFT_D_FWHILE =>
+                    d_while <= '0' & d(7 downto 1);
+                    check_d <= d_while and "00000000";
+
+                    next_state <= CHECK_D_FWHILE;
+
+                when CHECK_D_FWHILE =>
+                    if (check_d = '0') then
+                        next_state <= ; --TBD
+                    else
+                        d <= d_while;
+                        next_state <= COMPUTE_P;
+                    end if;
+
+                when COMPUTE_P =>
+                    int_p_temp <= ((int_p * Int_p) mod int_N);
+                    check_d_one <= d(0) and '1';
+
+                    next_state <= STORE_P;
+                    
+                when STORE_P =>
+                    int_p <= int_p_temp;
+                    if (check_d_one = '1') then
+                        next_state <= COMPUTE_T;
+                    else
+                        next_state <= BITSHIFT_D_FWHILE;
+                    end if;
+
+                when COMPUTE_T =>
+                    int_t_temp <= ((int_t * int_p) mod int_N);
+
+                    next_state <= STORE_T;
+
+                when STORE_T =>
+                    int_t <= int_t_temp;
+                    
+                    next_state <= BITSHIFT_D_FWHILE;
 
                 when DONE =>
                 
@@ -111,6 +163,10 @@ architecture internal of MRT is
                 when CHECK_D_AND_ONE =>
 
                 when COMPUTE_T_P =>
+
+                when COMPUTE_T =>
+
+                when 
 
                 when DONE =>
 
