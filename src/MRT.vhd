@@ -27,7 +27,14 @@ architecture internal of MRT is
                         STORE_P,
                         COMPUTE_T,
                         STORE_T,
+                        COMPARE_T,
+                        SECOND_WHILE,
+                        COMPUTE_T_SW,
+                        STORE_T_SW,
+                        COMPARE_T_SW,
                         DONE);
+    
+    signal prime                : std_logic:= '0';
     
     signal curr_state           : State_Type;
     signal next_state           : State_Type;
@@ -51,6 +58,9 @@ architecture internal of MRT is
     signal int_p_temp           : integer;
     signal int_t_temp           : integer;
     signal check_d_one          : std_logic;
+
+    signal counter_k            : integer;
+    signal counter_k_flag       : std_logic;
 
         
 
@@ -146,7 +156,54 @@ architecture internal of MRT is
                     
                     next_state <= BITSHIFT_D_FWHILE;
 
+                when COMPARE_T =>
+                    if (int_t = 1) then
+                        prime <= '1';
+                        next_state <= DONE;
+                    elsif (int_t = int_N_minus_one) then
+                        prime <= '1';
+                        next_state <= DONE;
+                    else
+                        prime <= '0';
+                        next_state <= SECOND_WHILE;
+                    end if;
+                        
+                when SECOND_WHILE =>
+                    counter_k_flag <= '0';
+                    if (counter_k < counter_j) then
+                        prime <= '0';
+                        next_state <= COMPUTE_T_SW
+                    else
+                        prime <= '0';
+                        next_state <= DONE;
+                    end if;
+
+                when COMPUTE_T_SW =>
+                    int_t_temp <= ((int_t * int_t) mod int_N);
+
+                    next_state <= STORE_T_SW;
+
+                when STORE_T_SW =>
+                    int_t <= int_t_temp;
+
+                    next_state <= STORE_T_SW;
+
+                when COMPARE_T_SW =>
+                    counter_k_flag = '1';
+                    if (int_t = int_N_minus_one) then
+                        prime <= '1';
+                        next_state <= DONE;
+                    else
+                        prime <= '0';
+                        next_state <= SECOND_WHILE;
+                    end if;
+
                 when DONE =>
+                    if (reset = '0') then 
+                        next_state <= START;
+                    else
+                        next_state <= DONE;
+                    end if;
                 
             end case;
         end process;
