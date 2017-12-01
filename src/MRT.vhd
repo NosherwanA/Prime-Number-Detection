@@ -241,6 +241,17 @@ architecture internal of MRT is
             end if;
         end process;
 
+        Counter_K_Section   : process(clk, reset, counter_k_flag)
+        begin
+            if (rising_edge(clk)) then
+                if (reset = '0') then 
+                    counter_k <= 0;
+                else
+                    counter_k <= counter_k + 1;
+                end if;
+            end if;
+        end process;
+
 
 
 end architecture;
