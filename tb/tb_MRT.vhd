@@ -28,6 +28,9 @@ architecture test of tb_MRT is
     signal out_busy                     : std_logic;
     signal out_done                     : std_logic;
 
+    constant TIME_PERIOD                : time := 20 ns;
+    constant DELTA_TIME                 : time := 20 ns;
+
 
 begin
     
