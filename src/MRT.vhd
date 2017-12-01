@@ -252,6 +252,4 @@ architecture internal of MRT is
             end if;
         end process;
 
-
-
 end architecture;
