@@ -211,40 +211,91 @@ architecture internal of MRT is
         Decoder_Section     : process(curr_state)
         begin
             case curr_state is
-                when START =>
-
-                when INITIAL_SETUP =>
-
-                when BITSHIFT_D =>
-
-                when CHECK_D_AND_ONE =>
-
-                when COMPUTE_T_P =>
-
-                when BITSHIFT_D_FWHILE =>
-
-                when CHECK_D_FWHILE =>
-
-                when COMPUTE_P =>
-					 
-                when STORE_P =>
-					 
-                when COMPUTE_T =>
-					 
-                when STORE_T =>
-
-                when COMPARE_T =>
-                        
-                when SECOND_WHILE =>
-
-                when COMPUTE_T_SW =>
-
-                when STORE_T_SW =>
-
-                when COMPARE_T_SW =>
-
-                when DONE =>
-                
+					when START =>
+						busy <= '0';
+						done <= '0';
+						isPrime <= '0';
+	
+					when INITIAL_SETUP =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when BITSHIFT_D =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when CHECK_D_AND_ONE =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when COMPUTE_T_P =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when BITSHIFT_D_FWHILE =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when CHECK_D_FWHILE =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when COMPUTE_P =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when STORE_P =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	 
+					when COMPUTE_T =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	 
+					when STORE_T =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when COMPARE_T =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+				
+					when SECOND_WHILE =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when COMPUTE_T_SW =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when STORE_T_SW =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when COMPARE_T_SW =>
+						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+	
+					when DONE =>
+						busy <= '0';
+						done <= '1';
+						isPrime <= prime;
+	
             end case;
         end process;
 
