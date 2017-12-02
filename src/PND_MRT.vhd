@@ -92,7 +92,9 @@ Register_Section: process (clk,reset)
 		IF (reset = '0') THEN
 		
 			Curr_State <= D;
-			in_reset <= '1';
+			in_reset <= '1'; -- keeping the multiplier in reset state
+			computation_StateB_Complete <= '0';
+			second_while_complete <= '0';
 			
 		ELSIF(rising_edge(clk)) THEN
 		
@@ -170,8 +172,12 @@ Transition_Section: process (Curr_State)
 				-- SImilar to the while loop number 2
 				if ( temp /= "00000000" ) then 
 				
+					
+				
 				else
-					-- break out 
+					-- break out
+					second_while_complete <= '1';
+				
 				end if;
 				
 			

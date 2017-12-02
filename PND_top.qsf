@@ -252,7 +252,6 @@ set_location_assignment PIN_C9 -to VGA_R[2]
 set_location_assignment PIN_A5 -to VGA_R[3]
 set_location_assignment PIN_G8 -to VGA_VS
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
-set_global_assignment -name VERILOG_FILE DE0_CV_golden_top.v
 set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
 set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
@@ -268,7 +267,6 @@ set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
 set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
 set_global_assignment -name BOARD "DE0-CV Development Board"
-set_global_assignment -name VHDL_FILE PND_top.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -478,6 +476,8 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VS
+set_global_assignment -name VERILOG_FILE DE0_CV_golden_top.v
+set_global_assignment -name VHDL_FILE PND_top.vhd
 set_global_assignment -name VHDL_FILE src/PND_TrialDivision.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE Sim_PND_TrialDivision.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE a.vwf
@@ -488,6 +488,12 @@ set_global_assignment -name VHDL_FILE src/Montgomery_Multiplier_Parameters.vhd
 set_global_assignment -name VHDL_FILE src/PND_MRT.vhd
 set_global_assignment -name VHDL_FILE src/Register_8Bit.vhd
 set_global_assignment -name VHDL_FILE src/Nminus1_Calculator.vhd
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name VHDL_FILE src/modmult.vhd
 set_global_assignment -name QIP_FILE src/Eight_Bit_Divider.qip
+set_global_assignment -name VHDL_FILE src/Eight_Bit_Divider.vhd
+set_global_assignment -name VHDL_FILE src/MRT.vhd
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

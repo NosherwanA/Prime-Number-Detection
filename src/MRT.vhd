@@ -126,7 +126,7 @@ architecture internal of MRT is
 
                 when CHECK_D_FWHILE =>
                     if (check_d = '0') then
-                        next_state <= ; --TBD
+                        next_state <= COMPARE_T; --TBD
                     else
                         d <= d_while;
                         next_state <= COMPUTE_P;
@@ -172,7 +172,7 @@ architecture internal of MRT is
                     counter_k_flag <= '0';
                     if (counter_k < counter_j) then
                         prime <= '0';
-                        next_state <= COMPUTE_T_SW
+                        next_state <= COMPUTE_T_SW;
                     else
                         prime <= '0';
                         next_state <= DONE;
@@ -189,7 +189,7 @@ architecture internal of MRT is
                     next_state <= STORE_T_SW;
 
                 when COMPARE_T_SW =>
-                    counter_k_flag = '1';
+                    counter_k_flag <= '1';
                     if (int_t = int_N_minus_one) then
                         prime <= '1';
                         next_state <= DONE;
@@ -221,12 +221,30 @@ architecture internal of MRT is
 
                 when COMPUTE_T_P =>
 
-                when COMPUTE_T =>
+                when BITSHIFT_D_FWHILE =>
 
-                when 
+                when CHECK_D_FWHILE =>
+
+                when COMPUTE_P =>
+					 
+                when STORE_P =>
+					 
+                when COMPUTE_T =>
+					 
+                when STORE_T =>
+
+                when COMPARE_T =>
+                        
+                when SECOND_WHILE =>
+
+                when COMPUTE_T_SW =>
+
+                when STORE_T_SW =>
+
+                when COMPARE_T_SW =>
 
                 when DONE =>
-
+                
             end case;
         end process;
 
