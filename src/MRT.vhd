@@ -120,12 +120,12 @@ architecture internal of MRT is
 
                 when BITSHIFT_D_FWHILE =>
                     d_while <= '0' & d(7 downto 1);
-                    check_d <= d_while and "00000000";
+                    --check_d <= d_while and "00000000";
 
                     next_state <= CHECK_D_FWHILE;
 
                 when CHECK_D_FWHILE =>
-                    if (check_d = "00000000") then
+                    if (d_while = "00000000") then --check_d
                         next_state <= COMPARE_T; --TBD
                     else
                         d <= d_while;
