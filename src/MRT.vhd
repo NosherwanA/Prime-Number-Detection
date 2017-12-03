@@ -304,7 +304,7 @@ architecture internal of MRT is
             if (rising_edge(clk)) then
                 if (reset = '0') then 
                     counter_j <= 0;
-                else
+                elsif (counter_j_flag = '1') then
                     counter_j <= counter_j + 1;
                 end if;
             end if;
@@ -315,7 +315,7 @@ architecture internal of MRT is
             if (rising_edge(clk)) then
                 if (reset = '0') then 
                     counter_k <= 0;
-                else
+                elsif (counter_k_flag = '1') then
                     counter_k <= counter_k + 1;
                 end if;
             end if;
