@@ -53,7 +53,7 @@ architecture internal of MRT is
     signal int_p                : integer;
 
     signal d_while              : std_logic_vector(7 downto 0);
-    signal check_d              : std_logic;
+    signal check_d              : std_logic_vector(7 downto 0);
 
     signal int_p_temp           : integer;
     signal int_t_temp           : integer;
@@ -90,8 +90,8 @@ architecture internal of MRT is
 
                 when INITIAL_SETUP =>
                     int_N <= to_integer(unsigned(numberToCheck));
-                    N_minus_one <= std_logic_vector((unsigned(numberToCheck)) - 1 );
-                    int_N_minus_one <= (unsigned(numberToCheck) - 1);
+                    N_minus_one <= std_logic_vector(to_unsigned(((to_integer(unsigned(numberToCheck))) - 1),8));
+                    int_N_minus_one <= (to_integer(unsigned(numberToCheck)) - 1);
                     d_in <= N_minus_one;
 
                     next_state <= BITSHIFT_D;
@@ -105,10 +105,10 @@ architecture internal of MRT is
 
                 when CHECK_D_AND_ONE =>
                     if (check = '0') then
-                        next_case <= BITSHIFT_D ;
+                        next_state <= BITSHIFT_D;
                         d_in <= d;
                     else
-                        next_case <= COMPUTE_T_P;
+                        next_state <= COMPUTE_T_P;
                     end if;
                     counter_j_flag <= '0';
 
@@ -125,7 +125,7 @@ architecture internal of MRT is
                     next_state <= CHECK_D_FWHILE;
 
                 when CHECK_D_FWHILE =>
-                    if (check_d = '0') then
+                    if (check_d = "00000000") then
                         next_state <= COMPARE_T; --TBD
                     else
                         d <= d_while;
@@ -133,7 +133,7 @@ architecture internal of MRT is
                     end if;
 
                 when COMPUTE_P =>
-                    int_p_temp <= ((int_p * Int_p) mod int_N);
+                    int_p_temp <= ((int_p * int_p) mod int_N);
                     check_d_one <= d(0) and '1';
 
                     next_state <= STORE_P;
@@ -192,7 +192,7 @@ architecture internal of MRT is
                     counter_k_flag <= '1';
                     if (int_t = int_N_minus_one) then
                         prime <= '1';
-                        next_state <= DONE;
+                        next_state <= S_DONE;
                     else
                         prime <= '0';
                         next_state <= SECOND_WHILE;

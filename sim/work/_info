@@ -9,65 +9,84 @@ z2
 cModel Technology
 dC:/intelFPGA_lite/17.0
 Emrt
-w1512314977
-Z0 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
-Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z3 dD:/Quartus_Projects/Prime_Number_Detection/sim
-8D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd
-FD:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd
+Z0 w1512315765
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dD:/Quartus_Projects/Prime_Number_Detection/sim
+Z5 8D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd
+Z6 FD:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd
 l0
 L5
 VFQ=9XTiL1FJX3e3[[dohV2
 !s100 ?fChZgQGSJ;AY[;GT<7a63
-Z4 OV;C;10.5b;63
+Z7 OV;C;10.5b;63
 32
-!s110 1512314983
+Z8 !s110 1512315775
 !i10b 1
-!s108 1512314983.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
-!s107 D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
+Z9 !s108 1512315775.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
+Z11 !s107 D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
 !i113 1
-Z5 o-work work -2002 -explicit
-Z6 tExplicit 1 CvgOpt 0
-Etb_mrt
-Z7 w1512314784
-R0
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Ainternal
 R1
 R2
 R3
-Z8 8D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
-Z9 FD:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
+DEx4 work 3 mrt 0 22 FQ=9XTiL1FJX3e3[[dohV2
+l68
+L17
+VS9]eYTMBUBU^2Vke5MQ8:0
+!s100 6VPhHDGW7BUhB[8f3aBe^0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Etb_mrt
+Z14 w1512314784
+R1
+R2
+R3
+R4
+Z15 8D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
+Z16 FD:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
 l0
 L5
 V^DRez;=Qn9TWk4MBGIUcP3
 !s100 [fHb>Hhz0X^lkC@0hYUC`3
-R4
+R7
 32
-Z10 !s110 1512314984
+Z17 !s110 1512315776
 !i10b 1
-Z11 !s108 1512314984.000000
-Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
-Z13 !s107 D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
+Z18 !s108 1512315776.000000
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
+Z20 !s107 D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
 !i113 1
-R5
-R6
-Atest
-R0
-R1
-R2
-DEx4 work 6 tb_mrt 0 22 ^DRez;=Qn9TWk4MBGIUcP3
-l35
-L9
-VeL13_nK[G8YnG<cO?XdTN1
-!s100 czAVhJT@M>>>PKg?=6gCJ1
-R4
-32
-R10
-!i10b 1
-R11
 R12
 R13
+Atest
+R1
+R2
+R3
+Z21 DEx4 work 6 tb_mrt 0 22 ^DRez;=Qn9TWk4MBGIUcP3
+l35
+L9
+Z22 VeL13_nK[G8YnG<cO?XdTN1
+Z23 !s100 czAVhJT@M>>>PKg?=6gCJ1
+R7
+32
+R17
+!i10b 1
+R18
+R19
+R20
 !i113 1
-R5
-R6
+R12
+R13
