@@ -56,7 +56,7 @@ begin
     simulation: process
     begin
         in_reset <= '0';
-        in_numberToCheck <= "00101111"
+        in_numberToCheck <= "00101111";
         wait for 15 ns;
         in_reset <= '1';
         in_start <= '1';
