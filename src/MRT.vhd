@@ -53,7 +53,6 @@ architecture internal of MRT is
     signal int_p                : integer;
 
     signal d_while              : std_logic_vector(7 downto 0);
-    signal check_d              : std_logic_vector(7 downto 0);
 
     signal int_p_temp           : integer;
     signal int_t_temp           : integer;
@@ -147,17 +146,16 @@ architecture internal of MRT is
                     int_t <= 2;
                     int_p <= 2;
                     
-                    next_state <= BITSHIFT_D_FWHILE; --state to be determined
+                    next_state <= BITSHIFT_D_FWHILE;
 
                 when BITSHIFT_D_FWHILE =>
                     d_while <= '0' & d(7 downto 1);
-                    --check_d <= d_while and "00000000";
 
                     next_state <= CHECK_D_FWHILE;
 
                 when CHECK_D_FWHILE =>
-                    if (d_while = "00000000") then --check_d
-                        next_state <= COMPARE_T; --TBD
+                    if (d_while = "00000000") then 
+                        next_state <= COMPARE_T;
                     else
                         d <= d_while;
                         next_state <= COMPUTE_P;
