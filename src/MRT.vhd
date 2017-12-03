@@ -103,8 +103,13 @@ architecture internal of MRT is
 
                 when INITIAL_SETUP =>
                     int_N <= to_integer(unsigned(numberToCheck));
-                    N_minus_one <= std_logic_vector(to_unsigned(((to_integer(unsigned(numberToCheck))) - 1),8));
-                    int_N_minus_one <= (to_integer(unsigned(numberToCheck)) - 1);
+                    if (numberToCheck = "00000000") then
+                        N_minus_one <= "00000000";
+                        int_N_minus_one <= 0;
+                    else
+                        N_minus_one <= std_logic_vector(to_unsigned(((to_integer(unsigned(numberToCheck))) - 1),8));
+                        int_N_minus_one <= (to_integer(unsigned(numberToCheck)) - 1);
+                    end if;
                     d_in <= N_minus_one;
                     
 
