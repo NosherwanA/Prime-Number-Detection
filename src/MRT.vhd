@@ -93,8 +93,15 @@ architecture internal of MRT is
                     N_minus_one <= std_logic_vector(to_unsigned(((to_integer(unsigned(numberToCheck))) - 1),8));
                     int_N_minus_one <= (to_integer(unsigned(numberToCheck)) - 1);
                     d_in <= N_minus_one;
+                    
 
-                    next_state <= BITSHIFT_D;
+                    if (numberToCheck(0) = '0') then
+                        prime <= '0';
+                        next_state <= S_DONE;
+                    else
+                        prime <= '0';
+                        next_state <= BITSHIFT_D;
+                    end if;
 
                 when BITSHIFT_D =>
                     d <= '0' & d_in(7 downto 1);
