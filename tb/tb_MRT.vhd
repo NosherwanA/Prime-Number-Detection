@@ -56,7 +56,7 @@ begin
     simulation: process
     begin
         in_reset <= '0';
-        in_numberToCheck <= "00101111";
+        in_numberToCheck <= "00101111"; -- (47)10
         wait for 15 ns;
         in_reset <= '1';
         in_start <= '1';
@@ -64,6 +64,116 @@ begin
         in_start <= '0';
         wait until (out_done = '1');
         --result: 1
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "10010010"; -- ()10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 0
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "1001011"; -- (75)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 0
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "11111011"; --(251)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 1
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "11111101"; --(253)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 0
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "11111110"; --()10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 0
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "10010111"; -- (151)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 1
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "10011001"; -- (153)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 0
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "00000011"; -- (3)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 1
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "00000000"; -- (0)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 0
+        wait for DELTA_TIME;
+
+        in_reset <= '0';
+        in_numberToCheck <= "00000001"; -- (1)10
+        wait for 15 ns;
+        in_reset <= '1';
+        in_start <= '1';
+        wait for 20 ns;
+        in_start <= '0';
+        wait until (out_done = '1');
+        --result: 0
         wait for DELTA_TIME;
 
     end process;
