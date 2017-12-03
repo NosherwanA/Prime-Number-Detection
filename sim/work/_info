@@ -9,7 +9,7 @@ z2
 cModel Technology
 dC:/intelFPGA_lite/17.0
 Emrt
-Z0 w1512322434
+Z0 w1512323616
 Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
@@ -22,9 +22,9 @@ VFQ=9XTiL1FJX3e3[[dohV2
 !s100 ?fChZgQGSJ;AY[;GT<7a63
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1512322616
+Z8 !s110 1512323822
 !i10b 1
-Z9 !s108 1512322616.000000
+Z9 !s108 1512323822.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
 Z11 !s107 D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
 !i113 1
@@ -37,8 +37,8 @@ R3
 DEx4 work 3 mrt 0 22 FQ=9XTiL1FJX3e3[[dohV2
 l68
 L17
-V;L^lQEd>FCU4PVG`g9Gf33
-!s100 NQY7[Qz6nbkQk7N^l@Wf92
+VC>@5A^DoCGXT:Hk_8O4Bz2
+!s100 A[R41Ta:;KYcA^4oTf4533
 R7
 32
 R8
@@ -78,8 +78,8 @@ R3
 Z19 DEx4 work 6 tb_mrt 0 22 ^DRez;=Qn9TWk4MBGIUcP3
 l35
 L9
-V?FE@1loeaJK:6[TogVImP0
-!s100 G:o7^ea6Gb4GL9dFE5Nc52
+Z20 V?FE@1loeaJK:6[TogVImP0
+Z21 !s100 G:o7^ea6Gb4GL9dFE5Nc52
 R7
 32
 R8

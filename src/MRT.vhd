@@ -40,7 +40,7 @@ architecture internal of MRT is
     signal next_state           : State_Type;
 
     signal int_N                : integer;
-    signal int_N_minus_one      : integer;
+    signal int_N_minus_one      : natural;
     signal N_minus_one          : std_logic_vector (7 downto 0);
 
     signal d_in                 : std_logic_vector(7 downto 0);
