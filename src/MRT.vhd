@@ -82,6 +82,19 @@ architecture internal of MRT is
         begin
             case curr_state is
                 when S_START =>
+                    int_p <= 0;
+                    int_t <= 0;
+                    int_N <= 0;
+                    int_N_minus_one <= 0;
+                    int_p_temp <= 0;
+                    int_t_temp <= 0;
+                    N_minus_one <= "00000000";
+                    d_in <= "00000000";
+                    d <= "00000000";
+                    d_while <= "00000000";
+                    counter_j_flag <= '0';
+                    counter_k_flag <= '0';
+
                     if (start = '1') then 
                         next_state <= INITIAL_SETUP;
                     else
