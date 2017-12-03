@@ -212,7 +212,7 @@ architecture internal of MRT is
                 when STORE_T_SW =>
                     int_t <= int_t_temp;
 
-                    next_state <= STORE_T_SW;
+                    next_state <= COMPARE_T_SW;
 
                 when COMPARE_T_SW =>
                     counter_k_flag <= '1';

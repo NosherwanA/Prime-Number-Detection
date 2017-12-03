@@ -67,7 +67,7 @@ begin
         wait for DELTA_TIME;
 
         in_reset <= '0';
-        in_numberToCheck <= "10010010"; -- ()10
+        in_numberToCheck <= "10010010"; -- (146)10
         wait for 15 ns;
         in_reset <= '1';
         in_start <= '1';
@@ -78,7 +78,7 @@ begin
         wait for DELTA_TIME;
 
         in_reset <= '0';
-        in_numberToCheck <= "1001011"; -- (75)10
+        in_numberToCheck <= "01001011"; -- (75)10
         wait for 15 ns;
         in_reset <= '1';
         in_start <= '1';
@@ -111,7 +111,7 @@ begin
         wait for DELTA_TIME;
 
         in_reset <= '0';
-        in_numberToCheck <= "11111110"; --()10
+        in_numberToCheck <= "11111110"; --(254)10
         wait for 15 ns;
         in_reset <= '1';
         in_start <= '1';
