@@ -108,7 +108,13 @@ architecture internal of MRT is
                     d_in <= N_minus_one;
                     
 
-                    if (numberToCheck(0) = '0') then
+                    if (numberToCheck(0) = '0') then --checking for even numbers
+                        prime <= '0';
+                        next_state <= S_DONE;
+                    elsif (numberToCheck = "00000000") then --EDGE CASE 0
+                        prime <= '0';
+                        next_state <= S_DONE;
+                    elsif (numberToCheck = "00000001") then -- EDGE CASE 1
                         prime <= '0';
                         next_state <= S_DONE;
                     else
