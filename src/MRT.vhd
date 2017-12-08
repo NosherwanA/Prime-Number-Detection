@@ -16,7 +16,7 @@ end entity;
 
 architecture internal of MRT is
 
-    type State_Type is (S_START,
+    type State_Type is (IDLE,
                         INITIAL_SETUP,
                         CHECK_D_AND_ONE,
                         BITSHIFT_D,
@@ -70,7 +70,7 @@ architecture internal of MRT is
         begin
             if (rising_edge(clk)) then
                 if (reset = '0') then
-                    curr_state <= S_START;
+                    curr_state <= IDLE;
                 else
                     curr_state <= next_state;
                 end if;
@@ -80,7 +80,7 @@ architecture internal of MRT is
         Transition_Section  : process(clk, curr_state)
         begin
             case curr_state is
-                when S_START =>
+                when IDLE =>
                     int_p <= 0;
                     int_t <= 0;
                     int_N <= 0;
@@ -97,7 +97,7 @@ architecture internal of MRT is
                     if (start = '1') then 
                         next_state <= INITIAL_SETUP;
                     else
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     end if;
 
                 when INITIAL_SETUP =>
@@ -114,13 +114,13 @@ architecture internal of MRT is
 
                     if (numberToCheck(0) = '0') then --checking for even numbers
                         prime <= '0';
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     elsif (numberToCheck = "00000000") then --EDGE CASE 0
                         prime <= '0';
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     elsif (numberToCheck = "00000001") then -- EDGE CASE 1
                         prime <= '0';
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     else
                         prime <= '0';
                         next_state <= BITSHIFT_D;
@@ -188,10 +188,10 @@ architecture internal of MRT is
                 when COMPARE_T =>
                     if (int_t = 1) then
                         prime <= '1';
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     elsif (int_t = int_N_minus_one) then
                         prime <= '1';
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     else
                         prime <= '0';
                         next_state <= SECOND_WHILE;
@@ -204,7 +204,7 @@ architecture internal of MRT is
                         next_state <= COMPUTE_T_SW;
                     else
                         prime <= '0';
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     end if;
 
                 when COMPUTE_T_SW =>
@@ -221,7 +221,7 @@ architecture internal of MRT is
                     counter_k_flag <= '1';
                     if (int_t = int_N_minus_one) then
                         prime <= '1';
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     else
                         prime <= '0';
                         next_state <= SECOND_WHILE;
@@ -229,7 +229,7 @@ architecture internal of MRT is
 
                 when S_DONE =>
                     if (reset = '0') then 
-                        next_state <= S_START;
+                        next_state <= IDLE;
                     else
                         next_state <= S_DONE;
                     end if;
@@ -240,7 +240,7 @@ architecture internal of MRT is
         Decoder_Section     : process(curr_state)
         begin
             case curr_state is
-					when S_START =>
+					when IDLE =>
 						busy <= '0';
 						done <= '1';
 						isPrime <= prime;
