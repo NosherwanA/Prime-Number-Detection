@@ -48,6 +48,7 @@ architecture internal of MRT is
     signal check                : std_logic;
     signal counter_j            : integer;
     signal counter_j_flag       : std_logic;
+    signal counter_j_clear      : std_logic;
 
     signal int_t                : integer;
     signal int_p                : integer;
@@ -60,6 +61,7 @@ architecture internal of MRT is
 
     signal counter_k            : integer;
     signal counter_k_flag       : std_logic;
+    signal counter_k_clear      : std_logic;
 
         
 
@@ -94,6 +96,9 @@ architecture internal of MRT is
                     counter_j_flag <= '0';
                     counter_k_flag <= '0';
 
+                    counter_j_clear <= '0';
+                    counter_k_clear <= '0';
+
                     if (start = '1') then 
                         next_state <= INITIAL_SETUP;
                     else
@@ -101,6 +106,8 @@ architecture internal of MRT is
                     end if;
 
                 when INITIAL_SETUP =>
+                    counter_j_clear <= '1';
+                    counter_k_clear <= '1';
                     int_N <= to_integer(unsigned(numberToCheck));
                     if (numberToCheck = "00000000") then
                         N_minus_one <= "00000000";
@@ -314,10 +321,12 @@ architecture internal of MRT is
             end case;
         end process;
 
-        Counter_J_Section   : process(clk, reset, counter_j_flag)
+        Counter_J_Section   : process(clk, counter_j_clear, counter_j_flag)
         begin
             if (rising_edge(clk)) then
                 if (reset = '0') then 
+                    counter_j <= 0;
+                elsif (counter_j_flag = '0') then
                     counter_j <= 0;
                 elsif (counter_j_flag = '1') then
                     counter_j <= counter_j + 1;
@@ -325,10 +334,12 @@ architecture internal of MRT is
             end if;
         end process;
 
-        Counter_K_Section   : process(clk, reset, counter_k_flag)
+        Counter_K_Section   : process(clk, counter_k_clear, counter_k_flag)
         begin
             if (rising_edge(clk)) then
                 if (reset = '0') then 
+                    counter_k <= 0;
+                elsif counter_k_clear then
                     counter_k <= 0;
                 elsif (counter_k_flag = '1') then
                     counter_k <= counter_k + 1;
