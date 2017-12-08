@@ -32,7 +32,7 @@ architecture internal of MRT is
                         COMPUTE_T_SW,
                         STORE_T_SW,
                         COMPARE_T_SW,
-                        S_DONE);
+                        );
     
     signal prime                : std_logic:= '0';
     
@@ -225,15 +225,7 @@ architecture internal of MRT is
                     else
                         prime <= '0';
                         next_state <= SECOND_WHILE;
-                    end if;
-
-                when S_DONE =>
-                    if (reset = '0') then 
-                        next_state <= IDLE;
-                    else
-                        next_state <= S_DONE;
-                    end if;
-                
+                    end if;       
             end case;
         end process;
 
@@ -319,12 +311,6 @@ architecture internal of MRT is
 						busy <= '1';
 						done <= '0';
 						isPrime <= '0';
-	
-					when S_DONE =>
-						busy <= '0';
-						done <= '1';
-						isPrime <= prime;
-	
             end case;
         end process;
 
