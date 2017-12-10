@@ -31,7 +31,7 @@ architecture internal of MRT is
                         SECOND_WHILE,
                         COMPUTE_T_SW,
                         STORE_T_SW,
-                        COMPARE_T_SW,
+                        COMPARE_T_SW
                         );
     
     signal prime                : std_logic:= '0';
@@ -339,7 +339,7 @@ architecture internal of MRT is
             if (rising_edge(clk)) then
                 if (reset = '0') then 
                     counter_k <= 0;
-                elsif counter_k_clear then
+                elsif (counter_k_clear = '0') then
                     counter_k <= 0;
                 elsif (counter_k_flag = '1') then
                     counter_k <= counter_k + 1;

@@ -9,7 +9,7 @@ z2
 cModel Technology
 dC:/intelFPGA_lite/17.0
 Emrt
-Z0 w1512325585
+Z0 w1512927811
 Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
@@ -22,9 +22,9 @@ VFQ=9XTiL1FJX3e3[[dohV2
 !s100 ?fChZgQGSJ;AY[;GT<7a63
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1512325589
+Z8 !s110 1512927815
 !i10b 1
-Z9 !s108 1512325588.000000
+Z9 !s108 1512927815.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
 Z11 !s107 D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd|
 !i113 1
@@ -34,11 +34,11 @@ Ainternal
 R1
 R2
 R3
-Z14 DEx4 work 3 mrt 0 22 FQ=9XTiL1FJX3e3[[dohV2
-l68
+DEx4 work 3 mrt 0 22 FQ=9XTiL1FJX3e3[[dohV2
+l69
 L17
-V=COhd8n5B1F3Q[I3_f7CY3
-!s100 RoChYQTlI[VSg2kAZO@Q=3
+V[FZDA:KTDEAMR5_GdEl=42
+!s100 0f:9J01D@7@RWJk?^ScUW0
 R7
 32
 R8
@@ -50,24 +50,24 @@ R11
 R12
 R13
 Etb_mrt
-Z15 w1512322605
+Z14 w1512927450
 R1
 R2
 R3
 R4
-Z16 8D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
-Z17 FD:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
+Z15 8D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
+Z16 FD:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
 l0
 L5
 V^DRez;=Qn9TWk4MBGIUcP3
 !s100 [fHb>Hhz0X^lkC@0hYUC`3
 R7
 32
-Z18 !s110 1512323822
+R8
 !i10b 1
-Z19 !s108 1512323822.000000
-Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
-Z21 !s107 D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
+R9
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
+Z18 !s107 D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd|
 !i113 1
 R12
 R13
@@ -75,18 +75,18 @@ Atest
 R1
 R2
 R3
-DEx4 work 6 tb_mrt 0 22 ^DRez;=Qn9TWk4MBGIUcP3
+Z19 DEx4 work 6 tb_mrt 0 22 ^DRez;=Qn9TWk4MBGIUcP3
 l35
 L9
-V?FE@1loeaJK:6[TogVImP0
-!s100 G:o7^ea6Gb4GL9dFE5Nc52
+Z20 V@E]HN1FE2]k0M;1Eamd8=2
+Z21 !s100 `]M7^Ddj1[e52He67KEWI2
 R7
 32
-R18
+R8
 !i10b 1
-R19
-R20
-R21
+R9
+R17
+R18
 !i113 1
 R12
 R13
