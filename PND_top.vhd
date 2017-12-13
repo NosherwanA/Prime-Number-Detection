@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.Montgomery_exponentiator_parameters.all;
+--use work.Montgomery_exponentiator_parameters.all;
 
 entity PND_top is port (
 	
@@ -82,6 +82,18 @@ architecture overall of PND_top is
 	);
 	end component;
 	
+	component MRT is
+		 port(
+			  numberToCheck               : in std_logic_vector (7 downto 0);
+			  clk                         : in std_logic;
+			  reset                       : in std_logic;
+			  start                       : in std_logic;
+			  isPrime                     : out std_logic;
+			  busy                        : out std_logic;
+			  done                        : out std_logic
+		 );
+	end component;
+	
 	
 	-- INTERNAL SIGNALS 
 	
@@ -90,10 +102,21 @@ architecture overall of PND_top is
 
 begin
 
-	inputNumber <= SW;
-	LEDR(0) <= isPrime;
+	--inputNumber <= SW;
+	--LEDR(0) <= isPrime;
 	
-	primeTester1 : PND_TrialDivision port map (inputNumber, isPrime);
+	--primeTester1 : PND_TrialDivision port map (inputNumber, isPrime);
+	
+	primetest: MRT 
+		port map(
+					SW(7 downto 0),
+					CLOCK_50,
+					RESET_N,
+					KEY(0),
+					LEDR(0),
+					LEDR(1),
+					LEDR(2)
+					);
 	
 
 end overall;

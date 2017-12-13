@@ -1,1 +1,19 @@
+D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Quartus_Projects/Prime_Number_Detection/tb/tb_MRT.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity tb_MRT
+-- Compiling architecture test of tb_MRT
 
+} {} {}} D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Quartus_Projects/Prime_Number_Detection/src/MRT.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity MRT
+-- Compiling architecture internal of MRT
+
+} {} {}}
