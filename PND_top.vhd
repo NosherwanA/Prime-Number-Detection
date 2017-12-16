@@ -139,11 +139,13 @@ begin
 					Sync_SW(7 downto 0),
 					CLOCK_50,
 					RESET_N,
-					Sync_PB(0),
+					Sync_PB(3),
 					LEDR(0),
 					LEDR(1),
 					LEDR(2)
 					);
 	
+	LEDR(9) <= Sync_PB(3);
+	LEDR(8) <= KEY(3);
 
 end overall;
