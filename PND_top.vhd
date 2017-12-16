@@ -103,6 +103,13 @@ architecture overall of PND_top is
 			  done                        : out std_logic
 		 );
 	end component;
+
+	component prime_decoder is
+		port(
+			isPrime         : in std_logic;
+			hexdisplay      : out std_logic_vector(20 downto 0)
+		);
+	end component;
 	
 	
 	-- INTERNAL SIGNALS 
@@ -110,8 +117,9 @@ architecture overall of PND_top is
 	signal Sync_SW			: std_logic_vector(9 downto 0);
 	signal Sync_PB			: std_logic_vector(3 downto 0);
 	
-	signal inputNumber	: std_logic_vector(9 downto 0);
-	signal isPrime			: std_logic;
+	signal inputNumber		: std_logic_vector(9 downto 0);
+	signal Prime			: std_logic;
+	signal disp				: std_logic_vector(20 downto 0);
 
 begin
 
@@ -139,13 +147,27 @@ begin
 					Sync_SW(7 downto 0),
 					CLOCK_50,
 					RESET_N,
-					Sync_PB(3),
-					LEDR(0),
+					not Sync_PB(3),
+					Prime,
 					LEDR(1),
 					LEDR(2)
 					);
-	
+
+	primedisplay: prime_decoder
+		port map(
+					Prime,
+					disp
+		);
+
+	HEX0 <= disp(6 downto 0);
+	HEX1 <= disp(13 downto 7);
+	HEX2 <= disp(20 downto 14);
+	HEX3 <= "1111111";
+	HEX4 <= "1111111";
+	HEX5 <= "1111111";
+
 	LEDR(9) <= Sync_PB(3);
 	LEDR(8) <= KEY(3);
 
+	LEDR(0) <= Prime;
 end overall;
