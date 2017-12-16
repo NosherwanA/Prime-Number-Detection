@@ -476,6 +476,11 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VS
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name SDC_FILE PND_top.sdc
 set_global_assignment -name VERILOG_FILE DE0_CV_golden_top.v
 set_global_assignment -name VHDL_FILE PND_top.vhd
 set_global_assignment -name VHDL_FILE src/PND_TrialDivision.vhd
@@ -492,8 +497,4 @@ set_global_assignment -name VHDL_FILE src/modmult.vhd
 set_global_assignment -name QIP_FILE src/Eight_Bit_Divider.qip
 set_global_assignment -name VHDL_FILE src/Eight_Bit_Divider.vhd
 set_global_assignment -name VHDL_FILE src/MRT.vhd
-set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
-set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
