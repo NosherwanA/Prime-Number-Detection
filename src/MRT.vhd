@@ -460,7 +460,7 @@ architecture internal of MRT is
             if (rising_edge(clk)) then
                 if (reset = '0') then 
                     counter_j <= 0;
-                elsif (counter_j_flag = '0') then
+                elsif (counter_j_clear = '0') then
                     counter_j <= 0;
                 elsif (counter_j_flag = '1') then
                     counter_j <= counter_j + 1;
