@@ -19,6 +19,7 @@ architecture internal of MRT is
     type State_Type is (IDLE,
                         INITIAL_SETUP,
                         CHECK_D_AND_ONE,
+                        HOLD,
                         BITSHIFT_D,
                         COMPUTE_T_P,
                         BITSHIFT_D_FWHILE,
@@ -130,7 +131,7 @@ architecture internal of MRT is
         N_minus_one_enable <= '1' when ((curr_state = INITIAL_SETUP)  and (ifZero = '0')) else '0';
 
         --d signals
-        d_set <= '1' when curr_state = INITIAL_SETUP else '0';
+        d_set <= '1' when curr_state = HOLD else '0';
         d_enable <= '1' when ((curr_state = BITSHIFT_D and check_d_one = '0' ) or curr_state = BITSHIFT_D_FWHILE) else '0';
 
         --int p signal
@@ -210,7 +211,7 @@ architecture internal of MRT is
                         next_state <= IDLE;
                     else
                         prime <= '0';
-                        next_state <= BITSHIFT_D;
+                        next_state <= HOLD;
                     end if;
                     
 
@@ -227,6 +228,9 @@ architecture internal of MRT is
                         --prime <= '0';
                         --next_state <= BITSHIFT_D;
                     --end if;
+
+                when HOLD =>
+                    next_state <= BITSHIFT_D;
 
                 when BITSHIFT_D =>
                    -- d <= '0' & d_in(7 downto 1);
@@ -371,6 +375,11 @@ architecture internal of MRT is
 	
 					when INITIAL_SETUP =>
 						busy <= '1';
+						done <= '0';
+						isPrime <= '0';
+
+                    when HOLD =>
+                        busy <= '1';
 						done <= '0';
 						isPrime <= '0';
 	
