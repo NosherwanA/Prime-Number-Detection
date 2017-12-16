@@ -3,10 +3,10 @@ use ieee.std_logic_1164.all;
 
 entity PB_Sync is 
     port(
-        clk         : in std_logic;
-        reset       : in std_logic; --Active low
-        data_in     : in std_logic_vector(3 downto 0);
-        data_out    : out std_logic_vector(3 downto 0)
+        PB_clk         : in std_logic;
+        PB_reset       : in std_logic; --Active low
+        PB_in     : in std_logic_vector(3 downto 0);
+        PB_out    : out std_logic_vector(3 downto 0)
     );
 end PB_Sync;
 
@@ -16,25 +16,25 @@ architecture internal of PB_Sync is
 
 begin
     
-    Left : process(clk,reset)
+    Left : process(PB_clk,PB_reset)
     begin
 
-        If (reset = '0') then 
+        If (PB_reset = '0') then 
             intermediate <= "0000";
-        elsif (rising_edge(clk)) then
-            intermediate <= data_in;
+        elsif (rising_edge(PB_clk)) then
+            intermediate <= PB_in;
         else
             intermediate <= intermediate;
         end if;
             
     end process;
 
-    Right : process(clk,reset)
+    Right : process(PB_clk,PB_reset)
     begin
 
-        If (reset = '0') then 
+        If (PB_reset = '0') then 
             outp <= "0000";
-        elsif (rising_edge(clk)) then
+        elsif (rising_edge(PB_clk)) then
             outp <= intermediate;
         else
             outp <= outp;
@@ -42,6 +42,6 @@ begin
    
     end process;
 
-    data_out <= outp;
+    PB_out <= outp;
 
 end internal;

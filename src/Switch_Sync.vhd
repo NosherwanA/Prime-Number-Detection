@@ -3,10 +3,10 @@ use ieee.std_logic_1164.all;
 
 entity Switch_Sync is 
     port(
-        clk         : in std_logic;
-        reset       : in std_logic; --Active low
-        data_in     : in std_logic_vector(9 downto 0);
-        data_out    : out std_logic_vector(9 downto 0)
+        SW_clk         : in std_logic;
+        SW_reset       : in std_logic; --Active low
+        SW_in     : in std_logic_vector(9 downto 0);
+        SW_out    : out std_logic_vector(9 downto 0)
     );
 end Switch_Sync;
 
@@ -16,25 +16,25 @@ architecture internal of Switch_Sync is
 
 begin
     
-    Left : process(clk,reset)
+    Left : process(SW_clk,SW_reset)
     begin
 
-        If (reset = '0') then 
+        If (SW_reset = '0') then 
             intermediate <= "0000000000";
-        elsif (rising_edge(clk)) then
-            intermediate <= data_in;
+        elsif (rising_edge(SW_clk)) then
+            intermediate <= SW_in;
         else
             intermediate <= intermediate;
         end if;
             
     end process;
 
-    Right : process(clk,reset)
+    Right : process(SW_clk,SW_reset)
     begin
 
-        If (reset = '0') then 
+        If (SW_reset = '0') then 
             outp <= "0000000000";
-        elsif (rising_edge(clk)) then
+        elsif (rising_edge(SW_clk)) then
             outp <= intermediate;
         else
             outp <= outp;
@@ -42,6 +42,6 @@ begin
    
     end process;
 
-    data_out <= outp;
+    SW_out <= outp;
 
 end internal;

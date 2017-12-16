@@ -74,12 +74,22 @@ architecture overall of PND_top is
 
 	-- COMPONENT DECLARATION
 	
-	component PND_TrialDivision is port (
-		
-		input		: in std_logic_vector(9 downto 0);
-		isPrime	: out std_logic
-		
-	);
+	component PB_Sync is 
+		 port(
+			  PB_clk         : in std_logic;
+			  PB_reset       : in std_logic; --Active low
+			  PB_in     : in std_logic_vector(3 downto 0);
+			  PB_out    : out std_logic_vector(3 downto 0)
+		 );
+	end component;
+	
+	component Switch_Sync is 
+		 port(
+			  SW_clk         : in std_logic;
+			  SW_reset       : in std_logic; --Active low
+			  SW_in     : in std_logic_vector(9 downto 0);
+			  SW_out    : out std_logic_vector(9 downto 0)
+		 );
 	end component;
 	
 	component MRT is
@@ -97,22 +107,39 @@ architecture overall of PND_top is
 	
 	-- INTERNAL SIGNALS 
 	
+	signal Sync_SW			: std_logic_vector(9 downto 0);
+	signal Sync_PB			: std_logic_vector(3 downto 0);
+	
 	signal inputNumber	: std_logic_vector(9 downto 0);
 	signal isPrime			: std_logic;
 
 begin
 
-	--inputNumber <= SW;
-	--LEDR(0) <= isPrime;
 	
-	--primeTester1 : PND_TrialDivision port map (inputNumber, isPrime);
+	Sync1: PB_Sync
+		port map(
+					CLOCK_50,
+					RESET_N,
+					KEY(3 downto 0),
+					Sync_PB(3 downto 0)
+					);
+					
+	Sync2: Switch_Sync
+		port map(
+					CLOCK_50,
+					RESET_N,
+					SW(9 downto 0),
+					Sync_SW(9 downto 0)
+					);
+	
+	
 	
 	primetest: MRT 
 		port map(
-					SW(7 downto 0),
+					Sync_SW(7 downto 0),
 					CLOCK_50,
 					RESET_N,
-					KEY(0),
+					Sync_PB(0),
 					LEDR(0),
 					LEDR(1),
 					LEDR(2)
