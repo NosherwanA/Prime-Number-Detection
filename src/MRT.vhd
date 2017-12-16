@@ -70,7 +70,7 @@ architecture internal of MRT is
 
     -- NEW SIGNALS
     signal ifDZero  : std_logic;
-    signal ifT_Zero_Nminus1 : std_logic;
+    signal ifT_One_Nminus1 : std_logic;
 
     signal ifK_less_J   : std_logic;
 
@@ -108,7 +108,7 @@ architecture internal of MRT is
 
         ifDZero <= '1' when d = "00000000" else '0';
 
-        ifT_Zero_Nminus1 <= '1' when (int_t = 0 or int_t = int_N_minus_one) else '0';
+        ifT_One_Nminus1 <= '1' when (int_t = 1 or int_t = int_N_minus_one) else '0';
 
         ifK_less_J <= '1' when (counter_k < counter_j) else '0';
 
@@ -293,7 +293,7 @@ architecture internal of MRT is
 
                 when COMPARE_T =>
 
-                    if (ifT_Zero_Nminus1 = '1') then
+                    if (ifT_One_Nminus1 = '1') then
                         prime <= '1';
                         next_state <= IDLE;
                     else
@@ -346,7 +346,7 @@ architecture internal of MRT is
                 when COMPARE_T_SW =>
                     --counter_k_flag <= '1';
                     
-                    if (ifT_Zero_Nminus1 = '1') then
+                    if (ifT_One_Nminus1 = '1') then
                         prime <= '1';
                         next_state <= IDLE;
                     else
